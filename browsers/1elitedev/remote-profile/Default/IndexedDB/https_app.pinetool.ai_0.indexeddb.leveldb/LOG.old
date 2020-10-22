@@ -1,0 +1,5 @@
+2020/10/22-20:27:44.789 1ea8 Reusing MANIFEST C:\Users\Administrator\Desktop\scraping\browsers\1elitedev\remote-profile\Default\IndexedDB\https_app.pinetool.ai_0.indexeddb.leveldb/MANIFEST-000001
+2020/10/22-20:29:22.103 211c Level-0 table #5: started
+2020/10/22-20:29:22.105 211c Level-0 table #5: 8301 bytes OK
+2020/10/22-20:29:22.106 211c Delete type=0 #3
+2020/10/22-20:29:22.106 211c Manual compaction at level-0 from (begin) .. (end); will stop at (end)

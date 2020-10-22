@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  </link>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+  <title>Bot</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <h2>Account Table</h2>
+      </div>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary" id="start-btn">start</button>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <table id="accountTable" class="table table-bordered table-condensed table-striped">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Email</th>
+              <th>Password</th>
+              <th>Proxy</th>
+              <th>Port</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+  </div>
+</body>
+<script>
+  Object.size = function (obj) {
+    var size = 0, key;
+    for (key in obj) {
+      if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+  };
+  $(document).ready(function () {
+
+    var account_array = ('{{ data | tojson | safe}}');
+    var account = account_array.substr(1, account_array.length - 2);
+
+    var account_arr = JSON.parse(account)
+    var len = Object.size(JSON.parse(account))
+
+    for (var i = 0; i < len; i++) {
+      console.log(account_arr[i].email)
+      $('#accountTable').append('<tr><td>' + account_arr[i].no + '</td>' + '<td>' + account_arr[i].email + '</td>' + '<td>' + account_arr[i].password + '</td>' + '<td>' + account_arr[i].proxy + '</td>' + '<td>' + account_arr[i].port + '</td>' + '<td>' +account_arr[i].date +'</td></tr>')
+    }
+
+    $("#start-btn").click(function() {
+      $.post("/automation/",{
+        duration: 5
+      },
+      function(data){
+        console.log("818181818181", data)
+      })
+    })
+  });
+
+</script>
+
+
+</html>
